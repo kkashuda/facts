@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/facts'
+
+Facts::CLI.new.call

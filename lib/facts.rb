@@ -1,5 +1,5 @@
-require "facts/version"
-
-module Facts
-  # Your code goes here...
-end
+require 'open-uri'
+require 'nokogiri'
+require 'pry'
+require_relative "./facts/version"
+require_relative "./facts/cli"
