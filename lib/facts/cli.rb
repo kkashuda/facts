@@ -9,6 +9,7 @@ class Facts::CLI
 
     self.menu
     self.get_input
+    self.goodbye 
   end
 
   def menu
@@ -31,22 +32,28 @@ class Facts::CLI
   end
 
   def get_input
-    input = gets.strip
-    case input
-    when "1"
-    when "2"
-    when "3"
-    when "4"
-    when "5"
-    when "6"
-    when "7"
-    when "8"
-    when "9"
-    when "10"
-    when "11"
-    when "12"
-    when "13"
+    input = nil
+    while input != "exit"
+      input = gets.strip.downcase
+      case input
+      when "1"
+      when "2"
+      when "3"
+      when "4"
+      when "5"
+      when "6"
+      when "7"
+      when "8"
+      when "9"
+      when "10"
+      when "11"
+      when "12"
+      when "13"
+      end
     end
   end
 
-end
+  def goodbye
+    puts "Thanks for hanging out! Hope you learned something new. :)"
+  end
+end # end of CLI class
