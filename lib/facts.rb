@@ -4,3 +4,4 @@ require 'pry'
 
 require_relative "./facts/version"
 require_relative "./facts/cli"
+require_relative "./facts/thefacts"
