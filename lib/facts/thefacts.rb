@@ -1,5 +1,4 @@
 class Facts::TheFacts
-  attr_accessor :category, :fact, :url
 
   def self.scrape
     self.scrape_categories
@@ -15,7 +14,11 @@ class Facts::TheFacts
     categories
   end
 
-  def self.scrape_facts
+  def self.scrape_links
+    doc = Nokogiri::HTML(open("http://www.generatefacts.com/"))
+    find_links = doc.css('div.category-box a[href]')
+    links = find_links.map {|element| element["href"]}
+    @links = links.uniq
   end
 
 end

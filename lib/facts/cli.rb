@@ -9,6 +9,9 @@ class Facts::CLI
 
     self.menu
     self.get_input
+
+    # not leaving this here
+    Facts::TheFacts.scrape_links
   end
 
   def menu
