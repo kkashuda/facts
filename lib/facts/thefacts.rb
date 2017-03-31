@@ -1,4 +1,5 @@
 class Facts::TheFacts
+  attr_accessor :links
 
   def self.scrape
     self.scrape_categories
@@ -19,6 +20,12 @@ class Facts::TheFacts
     find_links = doc.css('div.category-box a[href]')
     links = find_links.map {|element| element["href"]}
     @links = links.uniq
+  end
+
+  def self.index(index)
+    self.scrape_links
+    category = "http://www.generatefacts.com#{@links[index]}"
+    puts category
   end
 
 end

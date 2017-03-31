@@ -9,9 +9,6 @@ class Facts::CLI
 
     self.menu
     self.get_input
-
-    # not leaving this here
-    Facts::TheFacts.scrape_links
   end
 
   def menu
@@ -29,36 +26,29 @@ class Facts::CLI
 
       $started = true
     end
-
   end
 
   def get_input
     input = nil
     while input != "exit"
-      input = gets.strip.downcase
+      input = self.to_int_or_string(gets.strip)
       case input
       when "list"
         self.menu
       when "exit"
         self.goodbye
-      when "0"
-        puts
-      when "1"
-      when "2"
-      when "3"
-      when "4"
-      when "5"
-      when "6"
-      when "7"
-      when "8"
-      when "9"
-      when "10"
-      when "11"
-      when "12"
+      when (0..12)
+        # the input corresponds to the index of the links array in TheFacts
+        Facts::TheFacts.index(input)
       else
         puts "Type 'list' if you need to see the options again, or 'exit' to exit the program."
       end
     end
+  end
+
+  # thank you stackoverflow
+  def to_int_or_string(str)
+    return str.match(/^-?\d+$/) ? str.to_i : str.strip
   end
 
   def goodbye
