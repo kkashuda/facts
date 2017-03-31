@@ -1,6 +1,6 @@
 # Our CLI Controller
 class Facts::CLI
-
+  $started = false
   def call
     puts "Hello!"
     puts "Facts are cool, right? Especially when they are surprising."
@@ -9,29 +9,24 @@ class Facts::CLI
 
     self.menu
     self.get_input
-    self.goodbye
   end
 
   def menu
-    puts "1. Animal Facts"
-    puts "2. Famous People and Entertainment Facts"
-    puts "3. Finance Facts"
-    puts "4. Food and Drink Facts"
-    puts "5. Health Facts"
-    puts "6. History Facts"
-    puts "7. Interesting Facts"
-    puts "8. Law Facts"
-    puts "9. Nature Facts"
-    puts "10. Places Facts"
-    puts "11. President Facts"
-    puts "12. Science and Technology Facts"
-    puts "13. Sports Facts" # lucky number 13!
-    puts
-    puts "Go ahead and enter 1-13, and a random fact will be generated specifc to the category!"
-    puts "If you need to see the list of options again, enter 'list', or if you're ready to exit enter 'exit'."
-    puts
+    @categories = Facts::TheFacts.scrape_categories
+    index = 0
+    @categories.each do  |category|
+      puts "#{index} - #{category}"
+      index += 1
+    end
 
-    @facts = Facts::TheFacts.list 
+    if $started == false
+      puts "Go ahead and enter 0-12, and a random fact will be generated specifc to the category!"
+      puts "If you need to see the list of options again, enter 'list', or if you're ready to exit enter 'exit'."
+      puts
+
+      $started = true
+    end
+
   end
 
   def get_input
@@ -41,6 +36,10 @@ class Facts::CLI
       case input
       when "list"
         self.menu
+      when "exit"
+        self.goodbye
+      when "0"
+        puts
       when "1"
       when "2"
       when "3"
@@ -53,7 +52,6 @@ class Facts::CLI
       when "10"
       when "11"
       when "12"
-      when "13"
       else
         puts "Type 'list' if you need to see the options again, or 'exit' to exit the program."
       end
