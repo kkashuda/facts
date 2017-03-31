@@ -1,5 +1,5 @@
 class Facts::TheFacts
-  attr_accessor :links
+  attr_accessor :links, :category, :facts
 
   def self.scrape
     self.scrape_categories
@@ -24,8 +24,17 @@ class Facts::TheFacts
 
   def self.index(index)
     self.scrape_links
-    category = "http://www.generatefacts.com#{@links[index]}"
-    puts category
+    @category = "http://www.generatefacts.com#{@links[index]}"
+    self.scrape_category
+  end
+
+  def self.scrape_category
+    doc = Nokogiri::HTML(open(@category))
+    find_facts = doc.css("table.table a[href]")
+    # remove white space and unwanted characters
+    @facts = find_facts.map {|e| e.text.strip!.gsub(/[\u0001-\u001A]/ , '')}
+    puts @facts.sample
+    puts 
   end
 
 end
