@@ -1,28 +1,11 @@
 # Facts
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/facts`. To experiment with that code, run `bin/console` for an interactive prompt.
+Hello! This little gem Facts was designed to generate random, fun facts based on a specific category. I hope you have fun and learn something new and interesting! 
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'facts'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install facts
-
-## Usage
-
-TODO: Write usage instructions here
+To install this gem go ahead and clone this repository. Once you do that you can run bin/console. If you have issues running it that way make sure you executable permissions set on Facts. Once you run the command successfully, you will be prompted with a menu. 
 
 ## Development
 
